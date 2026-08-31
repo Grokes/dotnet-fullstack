@@ -1,0 +1,32 @@
+using System.Text.RegularExpressions;
+
+namespace DirectoryService.Domain.Entities
+{
+    public class Department
+    {
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public string Slug { get; private set; }
+        public string Path { get; private set; }
+        public Guid? ParentId { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
+
+        // private Department() { }
+
+        public Department(string name, string slug, Department? parent = null)
+        {
+            ArgumentNullException.ThrowIfNullOrWhiteSpace(name);
+            if (name.Length > 100)
+                throw new ArgumentException("Имя превышает 100 символов.", nameof(name));
+
+            Id = Guid.CreateVersion7();
+            Name = name;
+            Slug = slug;
+            ParentId = parent?.Id;
+            CreatedAt = DateTime.UtcNow;
+            UpdatedAt = DateTime.UtcNow;
+            Path = $"{parent?.Path}/{Slug}";
+        }
+    }
+}
