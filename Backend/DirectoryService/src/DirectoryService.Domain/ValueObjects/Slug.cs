@@ -10,7 +10,7 @@ namespace DirectoryService.Domain.ValueObjects
     {
         public string Value { get; }
 
-        private Slug(string value)
+        public Slug(string value)
         {
             ArgumentNullException.ThrowIfNullOrWhiteSpace(value);
 
@@ -23,7 +23,7 @@ namespace DirectoryService.Domain.ValueObjects
             }
 
             if (value.Length > 100)
-                throw new ArgumentException("Слаг превышает 100 символом", nameof(value));
+                throw new ArgumentException("Слаг превышает 100 символов", nameof(value));
 
             Value = value;
         }
