@@ -14,7 +14,15 @@ namespace DirectoryService.Domain.Entities
 
         public DepartmentLocation(Guid departmentId, Guid locationId, bool isPrimary)
         {
-            ArgumentNullException.ThrowIfNull(departmentId);
+            if (departmentId == Guid.Empty)
+                throw new ArgumentException(
+                    "DepartmentId не может быть пустым.",
+                    nameof(departmentId)
+                );
+
+            if (locationId == Guid.Empty)
+                throw new ArgumentException("LocationId не может быть пустым.", nameof(locationId));
+                    
             ArgumentNullException.ThrowIfNull(locationId);
 
             Id = Guid.CreateVersion7();

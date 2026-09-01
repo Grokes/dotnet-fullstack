@@ -9,8 +9,6 @@ namespace DirectoryService.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
 
-        //private Position() { }
-
         public Position(string name)
         {
             ArgumentNullException.ThrowIfNullOrWhiteSpace(name);

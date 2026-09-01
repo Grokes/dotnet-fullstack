@@ -13,8 +13,6 @@ namespace DirectoryService.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
 
-        // private Department() { }
-
         public Department(string name, Slug slug, Department? parent = null)
         {
             ArgumentNullException.ThrowIfNullOrWhiteSpace(name);

@@ -14,8 +14,6 @@ namespace DirectoryService.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
 
-        // private Location() { }
-
         public Location(string name, Address address)
         {
             ArgumentNullException.ThrowIfNullOrWhiteSpace(name);
@@ -28,6 +26,20 @@ namespace DirectoryService.Domain.Entities
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
 
+        }
+
+        public void ChangeName(string name)
+        {
+            ArgumentNullException.ThrowIfNullOrWhiteSpace(name);
+            if (name.Length > 100)
+                throw new ArgumentException("Имя превышает 100 символов.", nameof(name));
+
+            Name = name;
+        }
+
+        public void ChangeAddress(Address address)
+        {
+            Address = address;
         }
     }
 }
