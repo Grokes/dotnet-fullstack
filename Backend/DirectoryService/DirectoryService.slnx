@@ -4,5 +4,6 @@
     <Project Path="src/DirectoryService.Contracts/DirectoryService.Contracts.csproj" />
     <Project Path="src/DirectoryService.WebAPI/DirectoryService.WebAPI.csproj" />
     <Project Path="src/DirectoryService.Domain/DirectoryService.Domain.csproj" />
+    <Project Path="src/DirectoryService.Infrastructure/DirectoryService.Infrastructure.Posgres/DirectoryService.Infrastructure.Posgres.csproj" />
   </Folder>
 </Solution>
