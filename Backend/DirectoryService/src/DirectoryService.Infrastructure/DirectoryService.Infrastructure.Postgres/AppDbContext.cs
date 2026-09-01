@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace DirectoryService.Infrastructure.Posgres
+namespace DirectoryService.Infrastructure.Postgres
 {
     public class AppDbContext : DbContext
     {

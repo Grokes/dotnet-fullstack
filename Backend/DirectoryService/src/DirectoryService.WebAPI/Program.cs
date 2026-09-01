@@ -1,4 +1,4 @@
-using DirectoryService.Infrastructure.Posgres;
+using DirectoryService.Infrastructure.Postgres;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
