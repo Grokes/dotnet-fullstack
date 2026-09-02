@@ -13,8 +13,14 @@ namespace DirectoryService.Domain.Entities
 
         public DepartmentPosition(Guid departmentId, Guid positionId)
         {
-            ArgumentNullException.ThrowIfNull(departmentId);
-            ArgumentNullException.ThrowIfNull(positionId);
+             if (departmentId == Guid.Empty)
+                throw new ArgumentException(
+                    "DepartmentId не может быть пустым.",
+                    nameof(departmentId)
+                );
+
+            if (positionId == Guid.Empty)
+                throw new ArgumentException("PositionId не может быть пустым.", nameof(positionId));
 
             Id = Guid.CreateVersion7();
             DepartmentId = departmentId;

@@ -22,13 +22,12 @@ namespace DirectoryService.Domain.Entities
 
             if (locationId == Guid.Empty)
                 throw new ArgumentException("LocationId не может быть пустым.", nameof(locationId));
-                    
-            ArgumentNullException.ThrowIfNull(locationId);
 
             Id = Guid.CreateVersion7();
             DepartmentId = departmentId;
             LocationId = locationId;
             IsPrimary = isPrimary;
         }
+        
     }
 }
