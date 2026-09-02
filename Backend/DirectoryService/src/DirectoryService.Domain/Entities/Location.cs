@@ -8,9 +8,9 @@ namespace DirectoryService.Domain.Entities
 {
     public class Location
     {
-        public string Name { get; private set; }
         public Guid Id { get; private set; }
-        public Address Address { get; private set; }
+        public string Name { get; private set; } = string.Empty;
+        public Address Address { get; private set; } = Address.Empty;
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
 
@@ -26,6 +26,10 @@ namespace DirectoryService.Domain.Entities
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
 
+        }
+
+        private Location()
+        {
         }
 
         public void ChangeName(string name)

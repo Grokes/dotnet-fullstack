@@ -6,9 +6,9 @@ namespace DirectoryService.Domain.Entities
     public class Department
     {
         public Guid Id { get; private set; }
-        public string Name { get; private set; }
-        public Slug Slug { get; private set; }
-        public string Path { get; private set; }
+        public string Name { get; private set; } = string.Empty;
+        public Slug Slug { get; private set; } = Slug.Empty;
+        public string Path { get; private set; } = string.Empty;
         public Guid? ParentId { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
@@ -26,6 +26,10 @@ namespace DirectoryService.Domain.Entities
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
             Path = $"{parent?.Path}/{Slug}";
+        }
+
+        private Department()
+        {
         }
     }
 }

@@ -4,7 +4,7 @@ namespace DirectoryService.Domain.Entities
 {
     public class Position
     {
-        public string Name { get; private set; }
+        public string Name { get; private set; } = string.Empty;
         public Guid Id { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
@@ -19,6 +19,10 @@ namespace DirectoryService.Domain.Entities
             Name = name;
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
+        }
+
+        private Position()
+        {
         }
     }
 }

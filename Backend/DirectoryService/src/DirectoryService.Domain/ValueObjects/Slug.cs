@@ -27,5 +27,7 @@ namespace DirectoryService.Domain.ValueObjects
 
             Value = value;
         }
+
+        public static Slug Empty{get;} = new Slug(string.Empty);
     }
 }
