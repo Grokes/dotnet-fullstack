@@ -18,13 +18,19 @@ namespace DirectoryService.WebAPI
             CancellationToken cancellationToken
         )
         {
-            return Ok(new GetLocationDto(new Guid(), "name", new AddressDto("","","",""), DateTime.UtcNow, DateTime.UtcNow));
+            return Ok(
+                new GetLocationDto(
+                    new Guid(),
+                    "Главный офис",
+                    new AddressDto("Россия", "Москва", "Ленина", "101"),
+                    DateTime.UtcNow,
+                    DateTime.UtcNow
+                )
+            );
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(
-            CancellationToken cancellationToken
-        )
+        public async Task<IActionResult> Get(CancellationToken cancellationToken)
         {
             return Ok(Array.Empty<GetLocationDto>());
         }
