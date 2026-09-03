@@ -4,6 +4,7 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks();
 builder.Services.AddScoped<AppDbContext>(_ => new AppDbContext(
@@ -21,5 +22,5 @@ if (!app.Environment.IsProduction())
 }
 
 app.MapHealthChecks("/health");
-
+app.MapControllers();
 app.Run();
