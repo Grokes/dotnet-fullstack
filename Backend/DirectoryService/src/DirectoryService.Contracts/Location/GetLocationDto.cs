@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DirectoryService.Contracts.Address;
 
-namespace DirectoryService.Contracts.Location
-{
-    public record GetLocationDto(Guid Id, string Name, AddressDto Address, DateTime CreatedAt, DateTime UpdatedAt);
+namespace DirectoryService.Contracts.Location;
 
-}
+public record GetLocationDto(Guid Id, string Name, AddressDto Address, DateTime CreatedAt, DateTime UpdatedAt);
