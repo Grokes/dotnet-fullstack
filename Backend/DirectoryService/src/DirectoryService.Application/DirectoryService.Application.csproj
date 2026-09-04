@@ -5,4 +5,16 @@
     <ProjectReference Include="../DirectoryService.Domain/DirectoryService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>..\..\..\..\..\..\..\.nuget\packages\microsoft.extensions.logging.abstractions\10.0.4\lib\net10.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+
 </Project>

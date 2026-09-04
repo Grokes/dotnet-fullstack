@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../../DirectoryService.Domain/DirectoryService.Domain.csproj" />
+    <ProjectReference Include="..\..\DirectoryService.Application\DirectoryService.Application.csproj" />
   </ItemGroup>
 </Project>

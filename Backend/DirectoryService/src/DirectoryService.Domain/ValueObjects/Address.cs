@@ -53,5 +53,5 @@ public record Address
         Office = office;
     }
 
-    public static Address Empty {get;} = new Address(string.Empty, string.Empty, string.Empty, string.Empty);
+    //public static Address Empty {get;} = new Address(string.Empty, string.Empty, string.Empty, string.Empty);
 }

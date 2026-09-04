@@ -6,7 +6,7 @@ public class Location
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
-    public Address Address { get; private set; } = Address.Empty;
+    public Address Address { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
