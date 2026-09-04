@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace DirectoryService.Contracts.Position;
 
-namespace DirectoryService.Contracts.Position
-{
-    public record GetPositionDto(Guid Id, string Name, DateTime CreatedAt, DateTime UpdatedAt);
-}
+public record GetPositionDto(Guid Id, string Name, DateTime CreatedAt, DateTime UpdatedAt);

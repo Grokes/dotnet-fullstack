@@ -5,4 +5,12 @@
     <ProjectReference Include="../DirectoryService.Domain/DirectoryService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+  </ItemGroup>
+
+
+
 </Project>
