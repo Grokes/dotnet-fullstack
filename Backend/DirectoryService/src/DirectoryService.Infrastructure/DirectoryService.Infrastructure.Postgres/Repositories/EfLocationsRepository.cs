@@ -46,7 +46,7 @@ public class EfLocationsRepository : ILocationsRepository
         catch (Exception e)
         {
             _logger.LogInformation("Ошибка записи в БД");
-            return Guid.Empty;
+            throw;
         }
     }
 
