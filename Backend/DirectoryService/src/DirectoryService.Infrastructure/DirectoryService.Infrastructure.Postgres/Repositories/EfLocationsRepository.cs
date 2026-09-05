@@ -8,9 +8,9 @@ namespace DirectoryService.Infrastructure.Postgres.Repositories;
 public class EfLocationsRepository : ILocationsRepository
 {
     private readonly AppDbContext _context;
-    private readonly ILogger<NpgsqlLocationsRepository> _logger;
+    private readonly ILogger<EfLocationsRepository> _logger;
 
-    public EfLocationsRepository(AppDbContext context, ILogger<NpgsqlLocationsRepository> logger)
+    public EfLocationsRepository(AppDbContext context, ILogger<EfLocationsRepository> logger)
     {
         _context = context;
         _logger = logger;
@@ -28,26 +28,19 @@ public class EfLocationsRepository : ILocationsRepository
         }
         catch (Exception e)
         {
-            return Guid.Empty;
+            _logger.LogInformation("Ошибка записи в БД");
+            throw;
         }
     }
 
     public async Task<Guid> GetIdByNameAsync(string name, CancellationToken cancellationToken)
     {
-        try
-        {
-            var locationId = await _context.Locations
-                .Where(x => x.Name == name)
-                .Select(x => x.Id)
-                .FirstOrDefaultAsync(cancellationToken);
+        var locationId = await _context.Locations
+            .Where(x => x.Name == name)
+            .Select(x => x.Id)
+            .FirstOrDefaultAsync(cancellationToken);
 
-            return locationId;
-        }
-        catch (Exception e)
-        {
-            _logger.LogInformation("Ошибка записи в БД");
-            throw;
-        }
+        return locationId;
     }
 
     
