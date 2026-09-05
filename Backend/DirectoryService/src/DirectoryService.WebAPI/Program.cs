@@ -10,7 +10,10 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks();
 builder.Services.AddScoped<LocationsService>();
-builder.Services.AddScoped<ILocationsRepository, LocationsRepository>();
+builder.Services.AddSingleton<NpgsqlConnectionFactory>();
+// builder.Services.AddScoped<ILocationsRepository, EfLocationsRepository>();
+
+builder.Services.AddScoped<ILocationsRepository, NpgsqlLocationsRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateLocationValidator>();
 
 builder.Services.AddScoped<AppDbContext>(_ => new AppDbContext(

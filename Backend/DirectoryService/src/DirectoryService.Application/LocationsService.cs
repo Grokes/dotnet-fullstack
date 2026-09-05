@@ -31,7 +31,7 @@ public class LocationsService
             throw new ValidationException(validationResult.Errors);
         }
 
-        Guid checkName = await _locationsRepository.GetByNameAsync(locationDto.Name, cancellationToken);
+        Guid checkName = await _locationsRepository.GetIdByNameAsync(locationDto.Name, cancellationToken);
         if (checkName != Guid.Empty)
         {
             throw new Exception("Это имя уже использовано");

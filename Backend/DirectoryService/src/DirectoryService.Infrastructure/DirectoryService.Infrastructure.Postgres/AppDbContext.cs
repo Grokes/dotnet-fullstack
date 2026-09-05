@@ -1,3 +1,4 @@
+using DirectoryService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DirectoryService.Infrastructure.Postgres
@@ -5,6 +6,8 @@ namespace DirectoryService.Infrastructure.Postgres
     public class AppDbContext : DbContext
     {
         private readonly string _connectionString;
+
+        public DbSet<Location> Locations => Set<Location>(); 
 
         public AppDbContext(string connectionString)
         {
