@@ -52,6 +52,4 @@ public record Address
         Street = street;
         Office = office;
     }
-
-    //public static Address Empty {get;} = new Address(string.Empty, string.Empty, string.Empty, string.Empty);
 }

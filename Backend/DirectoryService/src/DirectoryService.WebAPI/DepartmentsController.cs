@@ -26,7 +26,7 @@ public class DepartmentsController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        [FromBody] CreateDepartmentRequest request,
+        [FromBody] CreateDepartmentDto request,
         CancellationToken cancellationToken
     )
     {
@@ -36,7 +36,7 @@ public class DepartmentsController : ControllerBase
     [HttpPut("{departmentsId:guid}")]
     public async Task<IActionResult> Update(
         [FromRoute] Guid departmentsId,
-        [FromBody] UpdateDepartmentRequest request,
+        [FromBody] UpdateDepartmentDto request,
         CancellationToken cancellationToken
     )
     {

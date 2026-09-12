@@ -2,4 +2,4 @@ using DirectoryService.Contracts.Address;
 
 namespace DirectoryService.Contracts.Location;
 
-public record CreateLocationRequest(string Name, AddressDto Address);
+public record CreateLocationDto(string Name, AddressDto Address);

@@ -11,19 +11,19 @@ public class LocationsService
 {
     private readonly ILocationsRepository _locationsRepository;
     private readonly ILogger<LocationsService> _logger;
-    private readonly IValidator<CreateLocationRequest> _validator;
+    private readonly IValidator<CreateLocationDto> _validator;
 
     public LocationsService(
         ILocationsRepository locationsRepository, 
         ILogger<LocationsService> logger, 
-        IValidator<CreateLocationRequest> validator)
+        IValidator<CreateLocationDto> validator)
     {
         _locationsRepository = locationsRepository;
         _logger = logger;
         _validator = validator;
     }
     
-    public async Task<Guid> Create(CreateLocationRequest locationDto, CancellationToken cancellationToken)
+    public async Task<Guid> Create(CreateLocationDto locationDto, CancellationToken cancellationToken)
     {
         var validationResult = await _validator.ValidateAsync(locationDto, cancellationToken);
         if (!validationResult.IsValid)

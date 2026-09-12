@@ -24,7 +24,7 @@ public class LocationsController : ControllerBase
     {
         return Ok(
             new GetLocationDto(
-                new Guid(),
+                Guid.Empty,
                 "Главный офис",
                 new AddressDto("Россия", "Москва", "Ленина", "101"),
                 DateTime.UtcNow,
@@ -41,7 +41,7 @@ public class LocationsController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        [FromBody] CreateLocationRequest request,
+        [FromBody] CreateLocationDto request,
         CancellationToken cancellationToken
     )
     {
@@ -52,7 +52,7 @@ public class LocationsController : ControllerBase
     [HttpPut("{locationId:guid}")]
     public async Task<IActionResult> Update(
         [FromRoute] Guid locationId,
-        [FromBody] UpdateLocationRequest request,
+        [FromBody] UpdateLocationDto request,
         CancellationToken cancellationToken
     )
     {

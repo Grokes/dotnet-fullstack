@@ -5,12 +5,12 @@ using Microsoft.Extensions.Logging;
 
 namespace DirectoryService.Infrastructure.Postgres.Repositories;
 
-public class EfLocationsRepository : ILocationsRepository
+public class LocationsRepository : ILocationsRepository
 {
     private readonly AppDbContext _context;
-    private readonly ILogger<EfLocationsRepository> _logger;
+    private readonly ILogger<LocationsRepository> _logger;
 
-    public EfLocationsRepository(AppDbContext context, ILogger<EfLocationsRepository> logger)
+    public LocationsRepository(AppDbContext context, ILogger<LocationsRepository> logger)
     {
         _context = context;
         _logger = logger;
@@ -28,7 +28,7 @@ public class EfLocationsRepository : ILocationsRepository
         }
         catch (Exception e)
         {
-            _logger.LogInformation("Ошибка записи в БД");
+            _logger.LogError("Ошибка записи в БД");
             throw;
         }
     }
@@ -42,15 +42,6 @@ public class EfLocationsRepository : ILocationsRepository
 
         return locationId;
     }
-
-    
-
-
-
-
-
-
-
 
     public Task<Guid> UpdateAsync(Location location, CancellationToken cancellationToken)
     {

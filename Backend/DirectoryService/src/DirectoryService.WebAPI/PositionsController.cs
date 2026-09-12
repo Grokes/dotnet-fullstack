@@ -26,7 +26,7 @@ public class PositionsController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Create(
-        [FromBody] CreatePositionRequest request,
+        [FromBody] CreatePositionDto request,
         CancellationToken cancellationToken
     )
     {
