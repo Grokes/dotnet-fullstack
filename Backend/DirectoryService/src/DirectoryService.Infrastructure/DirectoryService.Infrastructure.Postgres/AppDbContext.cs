@@ -9,6 +9,7 @@ namespace DirectoryService.Infrastructure.Postgres
 
         public DbSet<Location> Locations => Set<Location>(); 
         public DbSet<Department> Departments => Set<Department>();
+        public DbSet<DepartmentLocation> DepartmentLocations => Set<DepartmentLocation>();
 
         public AppDbContext(string connectionString)
         {

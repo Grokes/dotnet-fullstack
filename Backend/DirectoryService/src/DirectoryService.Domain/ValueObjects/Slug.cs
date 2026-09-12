@@ -8,9 +8,9 @@ public record Slug
 
     public Slug(string value)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(value);
+        // ArgumentException.ThrowIfNullOrWhiteSpace(value);
 
-        if (!Regex.IsMatch(value, @"^[a-z0-9]+(?:-[a-z0-9]+)*$"))
+        if (!Regex.IsMatch(value, "^[a-z0-9]+(?:-[a-z0-9]+)*$"))
         {
             throw new ArgumentException(
                 "Слаг должен содержать только строчные латинские буквы, цифры и одиночные дефисы.",
@@ -24,5 +24,5 @@ public record Slug
         Value = value;
     }
 
-    public static Slug Empty{get;} = new(string.Empty);
+    public static Slug Empty{get;} = new Slug(string.Empty);
 }

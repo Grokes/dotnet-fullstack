@@ -7,7 +7,7 @@ public class DepartmentLocation
     public Guid LocationId { get; private set; }
     public bool IsPrimary { get; private set; }
 
-    public DepartmentLocation(Guid departmentId, Guid locationId, bool isPrimary)
+    public DepartmentLocation(Guid departmentId, Guid locationId, bool isPrimary = false)
     {
         if (departmentId == Guid.Empty)
             throw new ArgumentException(

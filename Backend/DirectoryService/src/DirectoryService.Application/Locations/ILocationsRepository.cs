@@ -1,6 +1,6 @@
 using DirectoryService.Domain.Entities;
 
-namespace DirectoryService.Application;
+namespace DirectoryService.Application.Locations;
 
 public interface ILocationsRepository
 {
@@ -13,4 +13,6 @@ public interface ILocationsRepository
     Task<Location> GetByIdAsync(Guid locationId, CancellationToken cancellationToken);
 
     Task<Guid> GetIdByNameAsync(string name, CancellationToken cancellationToken);
+
+    Task<bool> IsAllExistAsync(IReadOnlyCollection<Guid> locationIds, CancellationToken cancellationToken);
 }

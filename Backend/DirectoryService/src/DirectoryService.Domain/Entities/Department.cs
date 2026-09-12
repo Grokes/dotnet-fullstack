@@ -6,7 +6,7 @@ public class Department
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
-    public Slug Slug { get; private set; } = Slug.Empty;
+    public Slug Slug { get; private set; }
     public string Path { get; private set; } = string.Empty;
     public Guid? ParentId { get; private set; }
     public DateTime CreatedAt { get; private set; }
@@ -24,7 +24,7 @@ public class Department
         ParentId = parent?.Id;
         CreatedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;
-        Path = $"{parent?.Path}/{Slug}";
+        Path = $"{parent?.Path}/{Slug.Value}";
     }
 
     private Department()
