@@ -1,7 +1,7 @@
 using DirectoryService.Contracts.Location;
 using FluentValidation;
 
-namespace DirectoryService.Application;
+namespace DirectoryService.Application.Locations;
 
 public class CreateLocationValidator: AbstractValidator<CreateLocationDto>
 {
@@ -26,6 +26,5 @@ public class CreateLocationValidator: AbstractValidator<CreateLocationDto>
         RuleFor(x => x.Address.Office).NotEmpty().WithMessage("Название офиса не может быть пустым");
         RuleFor(x => x.Address.Office).NotNull().WithMessage("Название офиса не может быть NotNull");
         RuleFor(x => x.Address.Office).MaximumLength(20).WithMessage("Название офиса не может превышать 20 символов");
-
     }
 }

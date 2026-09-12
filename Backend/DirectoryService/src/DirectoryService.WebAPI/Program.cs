@@ -1,5 +1,7 @@
-using DirectoryService.Application;
+using DirectoryService.Application.Departments;
+using DirectoryService.Application.Locations;
 using DirectoryService.Infrastructure.Postgres;
+using DirectoryService.Infrastructure.Postgres.Departments;
 using DirectoryService.Infrastructure.Postgres.Repositories;
 using FluentValidation;
 using Scalar.AspNetCore;
@@ -9,6 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks();
+
+builder.Services.AddScoped<DepartmentService>();
+builder.Services.AddScoped<IDepartmentsRepostitory, DepartmentsRepository>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateDepartmentValidator>();
+
 
 builder.Services.AddScoped<LocationsService>();
 builder.Services.AddScoped<ILocationsRepository, LocationsRepository>();

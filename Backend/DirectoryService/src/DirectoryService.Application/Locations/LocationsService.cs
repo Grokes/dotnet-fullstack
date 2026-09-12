@@ -4,8 +4,7 @@ using DirectoryService.Domain.ValueObjects;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 
-
-namespace DirectoryService.Application;
+namespace DirectoryService.Application.Locations;
 
 public class LocationsService
 {

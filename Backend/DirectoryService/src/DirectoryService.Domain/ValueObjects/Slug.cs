@@ -24,5 +24,5 @@ public record Slug
         Value = value;
     }
 
-    public static Slug Empty{get;} = new(string.Empty);
+    public static Slug Empty{get;} = new Slug(string.Empty);
 }

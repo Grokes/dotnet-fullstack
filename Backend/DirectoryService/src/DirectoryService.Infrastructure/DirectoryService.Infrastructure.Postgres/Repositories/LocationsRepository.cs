@@ -1,4 +1,4 @@
-using DirectoryService.Application;
+using DirectoryService.Application.Locations;
 using DirectoryService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -57,4 +57,12 @@ public class LocationsRepository : ILocationsRepository
     {
         throw new NotImplementedException();
     } 
+
+
+    public async Task<bool> IsAllExistAsync(IReadOnlyCollection<Guid> locationIds, CancellationToken cancellationToken)
+    {
+        var count = await _context.Locations.CountAsync(x => locationIds.Contains(x.Id), cancellationToken);
+
+        return count == locationIds.Count;
+    }
 }

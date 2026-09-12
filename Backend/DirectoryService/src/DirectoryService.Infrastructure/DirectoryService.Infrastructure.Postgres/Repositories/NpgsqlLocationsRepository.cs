@@ -1,5 +1,5 @@
 using Dapper;
-using DirectoryService.Application;
+using DirectoryService.Application.Locations;
 using DirectoryService.Domain.Entities;
 using Microsoft.Extensions.Logging;
 
@@ -80,6 +80,11 @@ public class NpgsqlLocationsRepository : ILocationsRepository
                 sqlParams,
                 cancellationToken: cancellationToken));
         return locationId;
+    }
+
+    public Task<bool> IsAllExistAsync(IReadOnlyCollection<Guid> locationIds, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 
 
