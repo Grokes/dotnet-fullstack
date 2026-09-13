@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DirectoryService.Infrastructure.Postgres.Departments;
 
-public class DepartmentsRepository : IDepartmentsRepostitory
+public class DepartmentsRepository : IDepartmentsRepository
 {
     private readonly AppDbContext _context;
     private readonly ILogger<DepartmentsRepository> _logger;

@@ -33,6 +33,11 @@ public class LocationsRepository : ILocationsRepository
         }
     }
 
+    public Task<Guid> UpdateAsync(Location location, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<Guid> GetIdByNameAsync(string name, CancellationToken cancellationToken)
     {
         var locationId = await _context.Locations
@@ -43,26 +48,33 @@ public class LocationsRepository : ILocationsRepository
         return locationId;
     }
 
-    public Task<Guid> UpdateAsync(Location location, CancellationToken cancellationToken)
+    public async Task<Guid> DeleteAsync(Guid locationId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await _context.Locations.Where(x => x.Id == locationId).ExecuteDeleteAsync(cancellationToken);
+        return locationId;
     }
 
-    public Task<Guid> DeleteAsync(Guid locationId, CancellationToken cancellationToken)
+    public async Task<Location?> GetByIdAsync(Guid locationId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
+        var location = await _context.Locations.FindAsync([locationId], cancellationToken);
 
-    public Task<Location> GetByIdAsync(Guid locationId, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
+        return location;
     } 
-
 
     public async Task<bool> IsAllExistAsync(IReadOnlyCollection<Guid> locationIds, CancellationToken cancellationToken)
     {
         var count = await _context.Locations.CountAsync(x => locationIds.Contains(x.Id), cancellationToken);
 
         return count == locationIds.Count;
+    }
+
+    public async Task<List<Location>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _context.Locations.ToListAsync(cancellationToken);
+    }
+
+    public async Task<int> SaveAsync(CancellationToken cancellationToken)
+    {
+        return await _context.SaveChangesAsync(cancellationToken);
     }
 }

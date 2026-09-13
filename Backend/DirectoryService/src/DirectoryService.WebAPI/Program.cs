@@ -13,7 +13,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks();
 
 builder.Services.AddScoped<DepartmentService>();
-builder.Services.AddScoped<IDepartmentsRepostitory, DepartmentsRepository>();
+builder.Services.AddScoped<IDepartmentsRepository, DepartmentsRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateDepartmentValidator>();
 
 

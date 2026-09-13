@@ -1,9 +1,8 @@
 using DirectoryService.Application.Locations;
-using DirectoryService.Contracts.Address;
 using DirectoryService.Contracts.Location;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DirectoryService.WebAPI;
+namespace DirectoryService.WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -17,26 +16,20 @@ public class LocationsController : ControllerBase
     }
 
     [HttpGet("{locationId:guid}")]
-    public async Task<IActionResult> GetById(
+    public async Task<IActionResult> GetByIdAsync(
         [FromRoute] Guid locationId,
         CancellationToken cancellationToken
     )
     {
-        return Ok(
-            new GetLocationDto(
-                Guid.Empty,
-                "Главный офис",
-                new AddressDto("Россия", "Москва", "Ленина", "101"),
-                DateTime.UtcNow,
-                DateTime.UtcNow
-            )
-        );
+        var location = await _locationsService.GetByIdAsync(locationId, cancellationToken);
+
+        return Ok(location);
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
     {
-        return Ok(Array.Empty<GetLocationDto>());
+        return Ok(await _locationsService.GetAllAsync(cancellationToken));
     }
 
     [HttpPost]
@@ -45,18 +38,18 @@ public class LocationsController : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        var locationId = await _locationsService.Create(request, cancellationToken);
+        var locationId = await _locationsService.CreateAsync(request, cancellationToken);
         return Created("", locationId);
     }
 
     [HttpPut("{locationId:guid}")]
-    public async Task<IActionResult> Update(
+    public async Task<IActionResult> UpdateAsync(
         [FromRoute] Guid locationId,
         [FromBody] UpdateLocationDto request,
         CancellationToken cancellationToken
     )
     {
-        return Ok();
+        return Ok(await _locationsService.UpdateAsync(locationId, request, cancellationToken));
     }
 
     [HttpDelete("{locationId:guid}")]
@@ -65,6 +58,6 @@ public class LocationsController : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        return Ok();
+        return Ok(await _locationsService.DeleteByIdAsync(locationId, cancellationToken));
     }
 }

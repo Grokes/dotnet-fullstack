@@ -11,17 +11,17 @@ public class DepartmentService
 {
     private readonly IValidator<CreateDepartmentDto> _validator;
     private readonly ILogger<DepartmentService> _logger;
-    private readonly IDepartmentsRepostitory _departmentRepository;
+    private readonly IDepartmentsRepository _departmentRepository;
     private readonly ILocationsRepository _locationsRepository;
 
     public DepartmentService(IValidator<CreateDepartmentDto> validator,
         ILogger<DepartmentService> logger,
-        IDepartmentsRepostitory repostitory,
+        IDepartmentsRepository repository,
         ILocationsRepository locationsRepository)
     {
         _validator = validator;
         _logger = logger;
-        _departmentRepository = repostitory;
+        _departmentRepository = repository;
         _locationsRepository = locationsRepository;
     }
 
