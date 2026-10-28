@@ -50,7 +50,7 @@ public class DepartmentsController : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        return Ok();
+        return Ok(await _departmentService.UpdateAsync(departmentsId, request, cancellationToken));
     }
 
     [HttpDelete("{departmentsId:guid}")]
@@ -60,5 +60,25 @@ public class DepartmentsController : ControllerBase
     )
     {
         return Ok(await _departmentService.DeleteByIdAsync(departmentId, cancellationToken));
+    }
+
+    [HttpPost("{departmentsId:guid}/locations/{locationsId:guid}")]
+    public async Task<IActionResult> AddLocationAsync(
+        [FromRoute] Guid departmentsId,
+        [FromRoute] Guid locationsId,
+        CancellationToken cancellationToken
+    )
+    {
+        return Ok(await _departmentService.AddLocationAsync(departmentsId, locationsId, cancellationToken));
+    }
+
+    [HttpDelete("{departmentsId:guid}/locations/{locationsId:guid}")]
+    public async Task<IActionResult> DeleteLocationAsync(
+        [FromRoute] Guid departmentsId,
+        [FromRoute] Guid locationsId,
+        CancellationToken cancellationToken
+    )
+    {
+        return Ok(await _departmentService.DeleteLocationAsync(departmentsId, locationsId, cancellationToken));
     }
 }

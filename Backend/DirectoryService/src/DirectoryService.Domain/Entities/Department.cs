@@ -27,6 +27,16 @@ public class Department
         Path = $"{parent?.Path}/{Slug.Value}";
     }
 
+    public void ChangeName(string name)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        if (name.Length > 100)
+            throw new ArgumentException("Имя превышает 100 символов.", nameof(name));
+
+        Name = name;
+    }
+
+
     private Department()
     {
     }

@@ -21,7 +21,7 @@ public class DepartmentsRepository : IDepartmentsRepository
         try
         {
             await _context.Departments.AddAsync(department, cancellationToken);
-            
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return department.Id;
@@ -59,8 +59,8 @@ public class DepartmentsRepository : IDepartmentsRepository
         }
         catch (Exception e)
         {
-           _logger.LogError("Ошибка записи в БД");
-           throw;
+            _logger.LogError("Ошибка записи в БД");
+            throw;
         }
     }
 
@@ -72,6 +72,36 @@ public class DepartmentsRepository : IDepartmentsRepository
     public async Task<Guid> DeleteAsync(Guid departmentId, CancellationToken cancellationToken)
     {
         await _context.Departments.Where(x => x.Id == departmentId).ExecuteDeleteAsync(cancellationToken);
+        return departmentId;
+    }
+
+    public async Task<int> SaveAsync(CancellationToken cancellationToken)
+    {
+        return await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<Guid> AddLocationAsync(Guid departmentId, Guid locationId, CancellationToken cancellationToken)
+    {
+        var departmentLocation = new DepartmentLocation(departmentId, locationId);
+
+        await _context.DepartmentLocations.AddAsync(departmentLocation, cancellationToken);
+
+        await _context.SaveChangesAsync(cancellationToken);
+
+        return departmentLocation.Id;
+    }
+
+
+    public async Task<List<Guid>> GetLocationsAsync(Guid departmentId, CancellationToken cancellationToken)
+    {
+        return await _context.DepartmentLocations.Where(x => x.DepartmentId == departmentId)
+            .Select(x => x.LocationId).ToListAsync(cancellationToken);
+    }
+
+    public async Task<Guid> DeleteLocationAsync(Guid departmentId, Guid locationId, CancellationToken cancellationToken)
+    {
+        await _context.DepartmentLocations.Where(x => x.DepartmentId == departmentId && x.LocationId == locationId)
+            .ExecuteDeleteAsync(cancellationToken);
         return departmentId;
     }
 }
