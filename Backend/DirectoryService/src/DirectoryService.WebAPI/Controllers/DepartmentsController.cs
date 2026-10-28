@@ -16,20 +16,21 @@ public class DepartmentsController : ControllerBase
     }
 
     [HttpGet("{departmentsId:guid}")]
-    public async Task<IActionResult> GetById(
-        [FromRoute] Guid departmentsId,
+    public async Task<IActionResult> GetByIdAsync(
+        [FromRoute] Guid departmentId,
         CancellationToken cancellationToken
     )
     {
-        return Ok(new GetDepartmentDto(new Guid(), "name", "slug", "path", new Guid(), DateTime.UtcNow, DateTime.UtcNow));
+        var department = await _departmentService.GetByIdAsync(departmentId, cancellationToken);
+        return Ok(department);
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get(
+    public async Task<IActionResult> GetAsync(
         CancellationToken cancellationToken
     )
     {
-        return Ok(Array.Empty<GetDepartmentDto>());
+        return Ok(await _departmentService.GetAllAsync(cancellationToken));
     }
 
     [HttpPost]
@@ -53,11 +54,11 @@ public class DepartmentsController : ControllerBase
     }
 
     [HttpDelete("{departmentsId:guid}")]
-    public async Task<IActionResult> Delete(
-        [FromRoute] Guid departmentsId,
+    public async Task<IActionResult> DeleteAsync(
+        [FromRoute] Guid departmentId,
         CancellationToken cancellationToken
     )
     {
-        return Ok();
+        return Ok(await _departmentService.DeleteByIdAsync(departmentId, cancellationToken));
     }
 }

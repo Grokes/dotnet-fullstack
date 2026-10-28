@@ -1,5 +1,6 @@
 using DirectoryService.Application.Departments;
 using DirectoryService.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DirectoryService.Infrastructure.Postgres.Departments;
@@ -61,6 +62,16 @@ public class DepartmentsRepository : IDepartmentsRepository
            _logger.LogError("Ошибка записи в БД");
            throw;
         }
-       
+    }
+
+    public async Task<List<Department>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _context.Departments.ToListAsync(cancellationToken);
+    }
+
+    public async Task<Guid> DeleteAsync(Guid departmentId, CancellationToken cancellationToken)
+    {
+        await _context.Departments.Where(x => x.Id == departmentId).ExecuteDeleteAsync(cancellationToken);
+        return departmentId;
     }
 }

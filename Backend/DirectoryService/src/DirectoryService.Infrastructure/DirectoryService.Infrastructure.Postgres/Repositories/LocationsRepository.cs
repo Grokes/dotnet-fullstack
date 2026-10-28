@@ -26,7 +26,7 @@ public class LocationsRepository : ILocationsRepository
 
             return location.Id;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             _logger.LogError("Ошибка записи в БД");
             throw;

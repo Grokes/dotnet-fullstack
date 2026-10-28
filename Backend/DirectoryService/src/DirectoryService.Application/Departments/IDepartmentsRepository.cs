@@ -10,4 +10,7 @@ public interface IDepartmentsRepository
     public Task<Guid> AddWithLocationsAsync(Department department,
         IReadOnlyCollection<DepartmentLocation> departmentLocations,
         CancellationToken cancellationToken);
+
+    public Task<List<Department>> GetAllAsync(CancellationToken cancellationToken);
+    public Task<Guid> DeleteAsync(Guid departmentId, CancellationToken cancellationToken);
 }

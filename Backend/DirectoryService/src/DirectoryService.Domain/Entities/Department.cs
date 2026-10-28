@@ -4,10 +4,10 @@ namespace DirectoryService.Domain.Entities;
 
 public class Department
 {
-    public Guid Id { get; private set; }
+    public Guid Id { get; }
     public string Name { get; private set; } = string.Empty;
-    public Slug Slug { get; private set; }
-    public string Path { get; private set; } = string.Empty;
+    public Slug Slug { get; }
+    public string Path { get; } = string.Empty;
     public Guid? ParentId { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
