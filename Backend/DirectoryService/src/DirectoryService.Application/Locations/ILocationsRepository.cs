@@ -10,9 +10,13 @@ public interface ILocationsRepository
 
     Task<Guid> DeleteAsync(Guid locationId, CancellationToken cancellationToken);
 
-    Task<Location> GetByIdAsync(Guid locationId, CancellationToken cancellationToken);
+    Task<Location?> GetByIdAsync(Guid locationId, CancellationToken cancellationToken);
 
     Task<Guid> GetIdByNameAsync(string name, CancellationToken cancellationToken);
 
     Task<bool> IsAllExistAsync(IReadOnlyCollection<Guid> locationIds, CancellationToken cancellationToken);
+
+    Task<List<Location>> GetAllAsync(CancellationToken cancellationToken);
+
+    Task<int> SaveAsync(CancellationToken cancellationToken);
 }

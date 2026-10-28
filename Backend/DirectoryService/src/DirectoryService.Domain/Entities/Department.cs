@@ -4,10 +4,10 @@ namespace DirectoryService.Domain.Entities;
 
 public class Department
 {
-    public Guid Id { get; private set; }
+    public Guid Id { get; }
     public string Name { get; private set; } = string.Empty;
-    public Slug Slug { get; private set; }
-    public string Path { get; private set; } = string.Empty;
+    public Slug Slug { get; }
+    public string Path { get; } = string.Empty;
     public Guid? ParentId { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
@@ -26,6 +26,16 @@ public class Department
         UpdatedAt = DateTime.UtcNow;
         Path = $"{parent?.Path}/{Slug.Value}";
     }
+
+    public void ChangeName(string name)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        if (name.Length > 100)
+            throw new ArgumentException("Имя превышает 100 символов.", nameof(name));
+
+        Name = name;
+    }
+
 
     private Department()
     {
