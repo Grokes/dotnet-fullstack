@@ -13,13 +13,15 @@ builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks();
 
 builder.Services.AddScoped<DepartmentService>();
-builder.Services.AddScoped<IDepartmentsRepostitory, DepartmentsRepository>();
+builder.Services.AddScoped<IDepartmentsRepository, DepartmentsRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateDepartmentValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateDepartmentValidator>();
 
 
 builder.Services.AddScoped<LocationsService>();
 builder.Services.AddScoped<ILocationsRepository, LocationsRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateLocationValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateLocationValidator>();
 // builder.Services.AddSingleton<NpgsqlConnectionFactory>();
 
 builder.Services.AddScoped<AppDbContext>(_ => new AppDbContext(
