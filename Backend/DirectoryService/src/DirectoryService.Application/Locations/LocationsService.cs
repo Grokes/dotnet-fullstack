@@ -101,10 +101,10 @@ public class LocationsService
 
     public async Task<Guid> UpdateAsync(Guid id, UpdateLocationDto locationDto, CancellationToken cancellationToken)
     {
-        var validationResult = await _updateDtoValidator.ValidateAsync(locationDto, cancellationToken);
-        if (!validationResult.IsValid)
+        var inputValidationResult = await _updateDtoValidator.ValidateAsync(locationDto, cancellationToken);
+        if (!inputValidationResult.IsValid)
         {
-            throw new ValidationException(validationResult.Errors);
+            throw new ValidationException(inputValidationResult.Errors);
         }
 
         var location = await _locationsRepository.GetByIdAsync(id, cancellationToken);
@@ -113,8 +113,8 @@ public class LocationsService
             throw new Exception("Локации не существует");
         }
 
-        var checkName = await _locationsRepository.GetIdByNameAsync(locationDto.Name, cancellationToken);
-        if (checkName != Guid.Empty)
+        var checkNameId = await _locationsRepository.GetIdByNameAsync(locationDto.Name, cancellationToken);
+        if (checkNameId != id && checkNameId != Guid.Empty)
         {
             throw new Exception("Это имя уже использовано");
         }

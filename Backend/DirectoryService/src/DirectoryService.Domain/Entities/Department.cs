@@ -34,6 +34,7 @@ public class Department
             throw new ArgumentException("Имя превышает 100 символов.", nameof(name));
 
         Name = name;
+        UpdatedAt = DateTime.UtcNow;
     }
 
 

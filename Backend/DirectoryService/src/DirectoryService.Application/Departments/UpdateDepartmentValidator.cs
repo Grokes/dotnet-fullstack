@@ -14,12 +14,5 @@ public class UpdateDepartmentValidator : AbstractValidator<UpdateDepartmentDto>
             .WithMessage("Название не должно быть null")
             .NotEmpty()
             .WithMessage("Название не должно быть пустым");
-
-
-        RuleFor(x => x.Slug)
-            .MaximumLength(100)
-            .WithMessage("Слаг не может быть больше 100 символов")
-            .Matches("^[a-z0-9]+(?:-[a-z0-9]+)*$")
-            .WithMessage("Слаг должен содержать только строчные латинские буквы, цифры и одиночные дефисы.");
     }
 }
